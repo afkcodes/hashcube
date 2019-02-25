@@ -30,6 +30,8 @@ def checkSudoku(sudoku):
                 return True
     return False
 
+# Check For valid Rows
+
 
 def checkRows(rows, xPos):
     checknum = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -40,10 +42,14 @@ def checkRows(rows, xPos):
     return True
 
 
+# Check For valid Rows
+
 def checkCols(sudokuCols, yPos):
     opsudoku = list(map(list, zip(*sudokuCols)))
     return checkRows(opsudoku, yPos)
 
+
+# Block values to List
 
 def checkBlocks(blockVal, blockId):
     # print(xPos)
@@ -62,6 +68,8 @@ def checkBlocks(blockVal, blockId):
             allBox.append(box)
     return checkRows(allBox, blockId)
 
+
+# Select Blocks
 
 def selectBlock(xPos, yPos):
     if xPos >= 6 and yPos <= 2:
@@ -87,27 +95,31 @@ def selectBlock(xPos, yPos):
 
     return blockSel
 
+# List of Valid Input & Ranges
+
 
 validInput = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 validRange = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-
-blockSel = 0
 print('\n \n')
+
+# Input for X and Y axis
 xPos = int(input('Enter X [0-8] : '))
 yPos = int(input('Enter Y [0-8] : '))
 
+blockSel = 0
 if xPos in validRange and yPos in validRange:
-
+    # Get BlockID
     blockId = selectBlock(xPos, yPos)
     defaultValue = sudoku[xPos][yPos]
-    print(sudoku[xPos][yPos])
-
+    # print(sudoku[xPos][yPos])
+# handle the blank Values
     testVal = input('Enter Value : ')
     if testVal == '':
         testVal = ''
     else:
         testVal = int(testVal)
         sudoku[xPos][yPos] = testVal
+#Check Existing with entered value
     if defaultValue == testVal and checkSudoku(sudoku) == True:
         print('"Valid Positon / Entry"')
     # print(checkRows(sudoku, xPos))
