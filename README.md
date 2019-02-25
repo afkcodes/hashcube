@@ -1,1 +1,3 @@
 # hashcube
+
+Programs for hashcube.
